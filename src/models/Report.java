@@ -16,104 +16,90 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Table(name = "reports")
-@NamedQueries({
-    @NamedQuery(
-            name = "getAllReports",
-            query = "SELECT r FROM Report AS r ORDER BY r.id DESC"
-            ),
-    @NamedQuery(
-            name = "getReportsCount",
-            query = "SELECT COUNT(r) FROM Report AS r"
-            ),
-    @NamedQuery(
-            name = "getMyAllReports",
-            query = "SELECT r FROM Report AS r WHERE r.employee = :employee ORDER BY r.id DESC"
-            ),
-    @NamedQuery(
-            name = "getMyReportsCount",
-            query = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :employee"
-            )
-})
+@NamedQueries({ @NamedQuery(name = "getAllReports", query = "SELECT r FROM Report AS r ORDER BY r.id DESC"),
+		@NamedQuery(name = "getReportsCount", query = "SELECT COUNT(r) FROM Report AS r"),
+		@NamedQuery(name = "getMyAllReports", query = "SELECT r FROM Report AS r WHERE r.employee = :employee ORDER BY r.id DESC"),
+		@NamedQuery(name = "getMyReportsCount", query = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :employee") })
 @Entity
 public class Report {
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //リソース内での連番
+	private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "employee_id", nullable = false)
-    private Employee employee;
+	@ManyToOne
+	@JoinColumn(name = "employee_id", nullable = false) //日報を登録した社員の社員番号
+	private Employee employee;
 
-    @Column(name = "report_date", nullable = false)
-    private Date report_date;
+	@Column(name = "report_date", nullable = false)  //いつの日報かを示す日付
+	private Date report_date;
 
-    @Column(name = "title", length = 255, nullable = false)
-    private String title;
+	@Column(name = "title", length = 255, nullable = false) //日報のタイトル
+	private String title;
 
-    @Lob
-    @Column(name = "content", nullable = false)
-    private String content;
+	@Lob
+	@Column(name = "content", nullable = false) //日報の内容
+	private String content;
 
-    @Column(name = "created_at", nullable = false)
-    private Timestamp created_at;
+	@Column(name = "created_at", nullable = false) //登録日時
+	private Timestamp created_at;
 
-    @Column(name = "updated_at", nullable = false)
-    private Timestamp updated_at;
+	@Column(name = "updated_at", nullable = false) //更新日時
+	private Timestamp updated_at;
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public Employee getEmployee() {
-        return employee;
-    }
+	public Employee getEmployee() {
+		return employee;
+	}
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
 
-    public Date getReport_date() {
-        return report_date;
-    }
+	public Date getReport_date() {
+		return report_date;
+	}
 
-    public void setReport_date(Date report_date) {
-        this.report_date = report_date;
-    }
+	public void setReport_date(Date report_date) {
+		this.report_date = report_date;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public String getContent() {
-        return content;
-    }
+	public String getContent() {
+		return content;
+	}
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+	public void setContent(String content) {
+		this.content = content;
+	}
 
-    public Timestamp getCreated_at() {
-        return created_at;
-    }
+	public Timestamp getCreated_at() {
+		return created_at;
+	}
 
-    public void setCreated_at(Timestamp created_at) {
-        this.created_at = created_at;
-    }
+	public void setCreated_at(Timestamp created_at) {
+		this.created_at = created_at;
+	}
 
-    public Timestamp getUpdated_at() {
-        return updated_at;
-    }
+	public Timestamp getUpdated_at() {
+		return updated_at;
+	}
 
-    public void setUpdated_at(Timestamp updated_at) {
-        this.updated_at = updated_at;
-    }
+	public void setUpdated_at(Timestamp updated_at) {
+		this.updated_at = updated_at;
+	}
 }
