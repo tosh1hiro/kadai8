@@ -32,7 +32,7 @@
 			</c:if>
 		</div>
 		<div id="content">${param.content}</div>
-		<div id="footer">by Taro Kirameki.</div>
+		<div id="footer">by 菅原 俊大.</div>
 	</div>
 </body>
 </html>
